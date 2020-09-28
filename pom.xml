@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cn.com.doone.tx.cloud.work.wechat.service</groupId>
+  <artifactId>work-wechat-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>work-wechat-service</name>
+  <!-- spring boot 开发模板 -->
+   <!-- spring boot 开发模板 -->
+    <parent>
+        <groupId>cn.com.doone.tx.development</groupId>
+        <artifactId>doone-tx-springboot-service</artifactId>
+        <version>5.0.0</version>
+    </parent>
+
+    <dependencies>
+		<dependency>
+			<groupId>cn.com.doone.tx.development</groupId>
+	        <artifactId>doone-tx-springcloud</artifactId>
+	        <version>5.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>cn.com.doone.tx.development</groupId>
+	        <artifactId>doone-tx-cache</artifactId>
+	        <version>5.0.0</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>cn.com.doone.tx.development</groupId>
+            <artifactId>doone-tx-common-login</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        
+    </dependencies>
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>cn.com.doone.tx.cloud.WorkWechatServiceApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<!-- 打包时将jsp文件拷贝到META-INF目录下 -->
+			<resource>
+				<!-- 指定resources插件处理哪个目录下的资源文件 -->
+				<directory>src/main/webapp</directory>
+				<!--注意此次必须要放在此目录下才能被访问到 -->
+				<targetPath>META-INF/resources</targetPath>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/**</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+</project>
